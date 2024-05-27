@@ -1,9 +1,12 @@
 node('master'){
-    stage('checkout code'){
+    stage('Checkout Code'){
         checkout scm
     }
     stage('Build'){
         bat "mvn clean install -Dmaven.test.skip=true"
+    }
+    stage('Test Cases Execution'){
+        bat "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pcoverage-per-test"
     }
 }
 
