@@ -20,6 +20,18 @@ node('master'){
     // stage('Deployment'){
     //     deploy adapters: [tomcat9(credentialsId: 'TomcatCreds', path:'', url:'http://localhost:9000/')], contextPath:'counterWebApp', war:'target/*.war'
     // }
+    stage('Deployment') {
+        // def tomcatDir = 'C:\\path\\to\\your\\apache-tomcat\\apache-tomcat-9.0.55'
+        def tomcatDir = 'C:\\Program Files\\Apache Software Foundation\\Tomcat 9.0'
+        def warFile = "C:\\Windows\\System32\\config\\systemprofile\\.m2\\repository\\com\\mycompany\\app\\my-app\\1.0-SNAPSHOT\\my-app-1.0-SNAPSHOT.war"
+
+        deploy(adapters: [tomcat9(credentialsId: 'TomcatCreds', path: '', url: "http://localhost:8090/manager/text")],
+               contextPath: 'counterWebApp',
+               war: warFile,
+               tomcatInstallation: "Tomcat-${env.NODE_NAME}", // Make sure you have a corresponding Tomcat installation with this name in Jenkins configuration
+               removeOldWar: true,
+               goal: 'deploy')
+    }
 }
 
 // pipeline {
