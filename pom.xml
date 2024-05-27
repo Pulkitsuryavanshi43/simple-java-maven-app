@@ -21,16 +21,31 @@
   </properties>
   <build>
     <pluginManagement>
-      <plugins>
+<!--       <plugins>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.13.0</version>
-          <configuration>
+<!--           <configuration>
             <release>11</release>
-          </configuration>
+          </configuration> -->
+            <configuration>
+                <archive>
+                    <disabled>true</disabled>
+                </archive>
+            </configuration>
         </plugin>
-      </plugins>
+      </plugins> -->
+                        <plugins>
+                            <plugin>
+                                <groupId>org.apache.maven.plugins</groupId>
+                                <artifactId>maven-war-plugin</artifactId>
+                                <version>3.3.1</version>
+                              <configuration>
+                              <release>11</release>
+                              </configuration>
+                            </plugin>
+                        </plugins>
     </pluginManagement>
     <plugins>
       <plugin>
