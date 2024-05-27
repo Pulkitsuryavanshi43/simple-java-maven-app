@@ -28,7 +28,7 @@ node('master'){
         deploy(adapters: [tomcat9(credentialsId: 'TomcatCreds', path: '', url: "http://localhost:8090/manager/text")],
                contextPath: 'counterWebApp',
                war: warFile,
-               tomcatInstallation: "Tomcat-${env.NODE_NAME}", // Make sure you have a corresponding Tomcat installation with this name in Jenkins configuration
+               // tomcatInstallation: "Tomcat-${env.NODE_NAME}", // Make sure you have a corresponding Tomcat installation with this name in Jenkins configuration
                removeOldWar: true,
                goal: 'deploy')
     }
