@@ -13,12 +13,12 @@ node('master'){
     }
     stage('SonarQube analysis') {
             // steps {
-                withSonarQubeEnv("${SONARSERVER}") {
+                // withSonarQubeEnv("${SONARSERVER}") {
                     // bat 'mvn clean package sonar:sonar'
                     // sh 'mvn clean package sonar:sonar'
-                     bat 'mvn sonar:sonar'
-                    // bat 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 '
-                    }
+                     // bat 'mvn sonar:sonar'
+                    bat 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=e1c5c5721e83ca938b0dd0da4cc0127b72a7be8a'
+                    // }
             // }
         }
     // stage('Archive Artifacts'){
