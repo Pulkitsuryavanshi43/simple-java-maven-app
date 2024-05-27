@@ -27,14 +27,6 @@ pipeline {
                 }
             }
         }
-        stage('Transfer to Artifactory') {
-            steps {
-                script {
-                    sh 'mv ~/.jenkins/workspace/fp-java-maven/target/my-app-1.0-SNAPSHOT.jar ~/.jenkins/workspace/fp-java-maven/target/root.war'
-                    sh 'jfrog rt u ~/.jenkins/workspace/fp-java-maven/target/root.war fp-java-maven/root.war'
-                }
-            }
-        }
         stage('Deploy to tomcat server') {
             steps {
                 script {
