@@ -18,7 +18,7 @@ node('master'){
     //     archiveArtifacts artifacts: 'target/*.war'
     // }
     // stage('Deployment'){
-    //     deploy adapters: [tomcat9(credentialsId: 'TomcatCreds', path:'', url:'http://localhost:9000/')], contextPath:'', war:'target/*.war'
+    //     deploy adapters: [tomcat9(credentialsId: 'TomcatCreds', path:'', url:'http://localhost:9000/')], contextPath:'myApp', war:'target/*.war'
     // }
     stage('Deployment') {
         // def tomcatDir = 'C:\\path\\to\\your\\apache-tomcat\\apache-tomcat-9.0.55'
