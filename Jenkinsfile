@@ -1,4 +1,7 @@
 node('master'){
+    environment{
+        SONARSERVER = 'sonarserver'
+    }
     stage('Checkout Code'){
         checkout scm
     }
@@ -12,7 +15,8 @@ node('master'){
             steps {
                 withSonarQubeEnv("${SONARSERVER}") {
                     // bat 'mvn clean package sonar:sonar'
-                    bat 'mvn sonar:sonar'
+                    sh 'mvn clean package sonar:sonar'
+                     // bat 'mvn sonar:sonar'
                     // bat 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 '
                     }
             }
