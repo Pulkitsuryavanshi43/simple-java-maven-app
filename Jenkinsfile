@@ -8,14 +8,27 @@ node('master'){
     stage('Test Cases Execution'){
         bat "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pcoverage-per-test"
     }
-    stage('SonarQube analysis') {
-            steps {
-                withSonarQubeEnv("${SONARSERVER}") {
-                    bat 'mvn clean package sonar:sonar'
-                    // bat 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 '
-                    }
-            }
-        }
+    // stage('SonarQube analysis') {
+    //         steps {
+    //             withSonarQubeEnv("${SONARSERVER}") {
+    //                 bat 'mvn clean package sonar:sonar'
+    //                 // bat 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 '
+    //                 }
+    //         }
+    //     }
+    // stage('Archive Artifacts'){
+    //     archiveArtifacts artifacts: 'target/*.war'
+    // }
+    stage('Deployment'){
+        deploy adapters: [tomcat9(credentialsId: 'TomcatCreds', path:'', url:'http://localhost:9000/')], contextPath:'counterWebApp', war:'target/*.war'
+    }
+    stage('Notification'){
+        emailtext(
+            subject:"Job Completed",
+            body:"Jenkins Pipeline Job for Maven Build got completed!!!",
+            to:"build-alerts@example.com"
+        )
+    }
 }
 
 // pipeline {
