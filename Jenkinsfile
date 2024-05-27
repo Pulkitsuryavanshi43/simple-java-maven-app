@@ -36,8 +36,9 @@ node('master'){
     }
     stage('Check Logs') {
         // Display the Tomcat logs in Jenkins
-        sh 'tail -n 100 /path/to/tomcat/logs/catalina.out'
-        sh 'tail -n 100 /path/to/tomcat/logs/your-app.log'
+        bat 'tail -n 100 /path/to/tomcat/logs/catalina.out'
+        // sh 'tail -n 100 /path/to/tomcat/logs/catalina.out'
+        bat 'tail -n 100 /path/to/tomcat/logs/your-app.log'
     }
 }
 
