@@ -12,14 +12,14 @@ node('master'){
         bat "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pcoverage-per-test"
     }
     stage('SonarQube analysis') {
-            steps {
-                withSonarQubeEnv("${SONARSERVER}") {
+            // steps {
+                // withSonarQubeEnv("${SONARSERVER}") {
                     // bat 'mvn clean package sonar:sonar'
-                    sh 'mvn clean package sonar:sonar'
-                     // bat 'mvn sonar:sonar'
+                    // sh 'mvn clean package sonar:sonar'
+                     bat 'mvn sonar:sonar'
                     // bat 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 '
-                    }
-            }
+                    // }
+            // }
         }
     // stage('Archive Artifacts'){
     //     archiveArtifacts artifacts: 'target/*.war'
