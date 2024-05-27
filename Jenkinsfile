@@ -20,7 +20,7 @@ node('master'){
     //     archiveArtifacts artifacts: 'target/*.war'
     // }
     stage('Deployment'){
-        deploy adapters: [tomcat9(credentialsId: 'TomcatCreds', path:'', url:'http://localhost:9000/')], contextPath:'counterWebApp', war:'target/*.jar'
+        deploy adapters: [tomcat9(credentialsId: 'TomcatCreds', path:'', url:'http://localhost:9000/')], contextPath:'counterWebApp', war:'target/*.war'
     }
     stage('Notification'){
         emailtext(
