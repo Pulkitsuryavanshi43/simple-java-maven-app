@@ -21,34 +21,19 @@
   </properties>
   <build>
     <pluginManagement>
-<!--       <plugins>
+      <plugins>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.13.0</version>
-  <configuration>
+          <configuration>
             <release>11</release>
-          </configuration> 
-            <configuration>
-                <archive>
-                    <disabled>true</disabled>
-                </archive>
-            </configuration>
+          </configuration>
         </plugin>
-      </plugins> -->
-                        <plugins>
-                            <plugin>
-                                <groupId>org.apache.maven.plugins</groupId>
-                                <artifactId>maven-war-plugin</artifactId>
-                                <version>3.3.1</version>
-                              <configuration>
-                              <release>11</release>
-                              </configuration>
-                            </plugin>
-                        </plugins>
+      </plugins>
     </pluginManagement>
     <plugins>
-      <plugin>
+<!--       <plugin>
         <!-- Build an executable JAR -->
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
@@ -62,7 +47,23 @@
             </manifest>
           </archive>
         </configuration>
-      </plugin>
+      </plugin> -->
+
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <version>3.3.1</version>
+          <configuration>
+          <archive>
+            <manifest>
+              <addClasspath>true</addClasspath>
+              <classpathPrefix>lib/</classpathPrefix>
+              <mainClass>com.mycompany.app.App</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+        </plugin>
+      
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
