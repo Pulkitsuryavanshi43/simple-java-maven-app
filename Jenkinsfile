@@ -26,7 +26,7 @@ node('master'){
         // def warFile = "C:\\Windows\\System32\\config\\systemprofile\\.m2\\repository\\com\\mycompany\\app\\my-app\\1.0-SNAPSHOT\\my-app-1.0-SNAPSHOT.war"
         def warFile = "**/*.war"
 
-        deploy(adapters: [tomcat9(credentialsId: 'TomcatCreds', path: '', url: "http://localhost:8090/manager/text")],
+        deploy(adapters: [tomcat9(credentialsId: 'TomcatCreds', path: '', url: "http://localhost:8090/")],
                contextPath: 'counterWebApp',
                war: warFile,
                // tomcatInstallation: "Tomcat-${env.NODE_NAME}", // Make sure you have a corresponding Tomcat installation with this name in Jenkins configuration
