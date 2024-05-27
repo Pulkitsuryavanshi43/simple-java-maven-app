@@ -18,7 +18,7 @@ node('master'){
     //     archiveArtifacts artifacts: 'target/*.war'
     // }
     // stage('Deployment'){
-    //     deploy adapters: [tomcat9(credentialsId: 'TomcatCreds', path:'', url:'http://localhost:9000/')], contextPath:'myApp', war:'target/*.war'
+    //     deploy adapters: [tomcat9(credentialsId: 'TomcatCreds', path:'', url:'http://localhost:9000/')], contextPath:'counterWebApp', war:'target/*.war'
     // }
     stage('Deployment') {
         // def tomcatDir = 'C:\\path\\to\\your\\apache-tomcat\\apache-tomcat-9.0.55'
@@ -27,7 +27,7 @@ node('master'){
         def warFile = "**/*.war"
 
         deploy(adapters: [tomcat9(credentialsId: 'TomcatCreds', path: '', url: "http://localhost:8090/")],
-               contextPath: 'counterWebApp',
+               contextPath: '',
                war: warFile,
                // tomcatInstallation: "Tomcat-${env.NODE_NAME}", // Make sure you have a corresponding Tomcat installation with this name in Jenkins configuration
                removeOldWar: true,
