@@ -23,7 +23,8 @@ node('master'){
     stage('Deployment') {
         // def tomcatDir = 'C:\\path\\to\\your\\apache-tomcat\\apache-tomcat-9.0.55'
         def tomcatDir = 'C:\\Program Files\\Apache Software Foundation\\Tomcat 9.0'
-        def warFile = "C:\\Windows\\System32\\config\\systemprofile\\.m2\\repository\\com\\mycompany\\app\\my-app\\1.0-SNAPSHOT\\my-app-1.0-SNAPSHOT.war"
+        // def warFile = "C:\\Windows\\System32\\config\\systemprofile\\.m2\\repository\\com\\mycompany\\app\\my-app\\1.0-SNAPSHOT\\my-app-1.0-SNAPSHOT.war"
+        def warFile = "**/*.war"
 
         deploy(adapters: [tomcat9(credentialsId: 'TomcatCreds', path: '', url: "http://localhost:8090/manager/text")],
                contextPath: 'counterWebApp',
