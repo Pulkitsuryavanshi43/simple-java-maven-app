@@ -1,15 +1,6 @@
 node('master'){
     environment{
         SONARSERVER = 'sonarserver'
-        NEXUS_VERSION = "nexus3"
-        // This can be http or https
-        NEXUS_PROTOCOL = "http"
-        // Where your Nexus is running
-        NEXUS_URL = "localhost:8081"
-        // Repository where we will upload the artifact
-        NEXUS_REPOSITORY = "maven-central"
-        // Jenkins credential id to authenticate to Nexus OSS
-        NEXUS_CREDENTIAL_ID = "nexus"
     }
     stage('Checkout Code'){
         checkout scm
@@ -45,13 +36,13 @@ node('master'){
                         echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version}";
 
                         nexusArtifactUploader(
-                            nexusVersion: ${NEXUS_VERSION},
-                            protocol: ${NEXUS_PROTOCOL},
-                            nexusUrl: ${NEXUS_URL},
+                            nexusVersion: 'nexus3',
+                            protocol: 'http',
+                            nexusUrl: 'localhost:8081',
                             groupId: pom.groupId,
                             version: pom.version,
-                            repository: ${NEXUS_REPOSITORY},
-                            credentialsId: ${NEXUS_CREDENTIAL_ID},
+                            repository: 'maven-central',
+                            credentialsId: 'nexus',
                             artifacts: [
                                 // Artifact generated such as .jar, .ear and .war files.
                                 [artifactId: pom.artifactId,
