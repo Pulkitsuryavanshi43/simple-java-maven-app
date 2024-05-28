@@ -28,6 +28,7 @@ node('master'){
                 groupId:'pom.com.mycompany.app',
                 version:'1.0-SNAPSHOT',
                 repository:'maven-central',
+                credentialsId:'nexus',
                 artifacts:[
                     [artifactId:'pom.my-app',
                      classifier:'',
