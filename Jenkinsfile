@@ -17,6 +17,32 @@ node('master'){
     // stage('Archive Artifacts'){
     //     archiveArtifacts artifacts: 'target/*.war'
     // }
+    stage('Publish to nexus repository manager'){
+        script{
+            pom=readMavenPom file:"pom.xml";
+            def warFile = "**/*.war"
+            nexusArtifactUploader(
+                nexusVersion:'nexus3',
+                protocol:'http',
+                nexusUrl:'http://localhost:8081',
+                groupId:'pom.com.mycompany.app',
+                version:'1.0-SNAPSHOT',
+                repository:'maven-central',
+                artifacts:[
+                    [artifactId:'pom.my-app',
+                     classifier:'',
+                     file:warFile,
+                     type:pom.packaging],
+                    [
+                        artifactId:'pom.my-app',
+                        classifier:'',
+                        file:'pom.xml',
+                        type:'pom'
+                    ]
+                ]
+            )
+        }
+    }
     stage('Deployment') {
         def warFile = "**/*.war"
         deploy(adapters: [tomcat9(credentialsId: 'TomcatCreds', path: '', url: "http://localhost:8090/")],
