@@ -45,13 +45,13 @@ node('master'){
                         echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version}";
 
                         nexusArtifactUploader(
-                            nexusVersion: NEXUS_VERSION,
-                            protocol: NEXUS_PROTOCOL,
-                            nexusUrl: NEXUS_URL,
+                            nexusVersion: ${NEXUS_VERSION},
+                            protocol: ${NEXUS_PROTOCOL},
+                            nexusUrl: ${NEXUS_URL},
                             groupId: pom.groupId,
                             version: pom.version,
-                            repository: NEXUS_REPOSITORY,
-                            credentialsId: NEXUS_CREDENTIAL_ID,
+                            repository: ${NEXUS_REPOSITORY},
+                            credentialsId: ${NEXUS_CREDENTIAL_ID},
                             artifacts: [
                                 // Artifact generated such as .jar, .ear and .war files.
                                 [artifactId: pom.artifactId,
