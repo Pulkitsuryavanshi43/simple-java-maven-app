@@ -72,6 +72,7 @@ node('master'){
                     }
                 }
             }
+    }
     
     // stage('Publish to nexus repository manager'){
     //     script{
