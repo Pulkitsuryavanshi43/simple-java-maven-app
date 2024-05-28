@@ -41,7 +41,7 @@ node('master'){
                             nexusUrl: 'localhost:8081',
                             groupId: pom.groupId,
                             version: pom.version,
-                            repository: 'maven-central',
+                            repository: 'maven-central-repository',
                             credentialsId: 'nexus',
                             artifacts: [
                                 // Artifact generated such as .jar, .ear and .war files.
