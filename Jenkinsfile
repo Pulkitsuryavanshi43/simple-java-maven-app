@@ -38,7 +38,7 @@ node('master'){
                         artifactId:'pom.my-app',
                         classifier:'',
                         file:'pom.xml',
-                        type:'pom'
+                        // type:'pom'
                     ]
                 ]
             )
