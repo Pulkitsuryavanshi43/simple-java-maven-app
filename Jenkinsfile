@@ -14,12 +14,7 @@ node('master'){
     stage('SonarQube analysis') {
             bat 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=e1c5c5721e83ca938b0dd0da4cc0127b72a7be8a'
         }
-    // stage('Archive Artifacts'){
-    //     archiveArtifacts artifacts: 'target/*.war'
-    // }
-
     stage("publish to nexus") {
-            // steps {
                 script {
                     // Read POM xml file using 'readMavenPom' step , this step 'readMavenPom' is included in: https://plugins.jenkins.io/pipeline-utility-steps
                     pom = readMavenPom file: "pom.xml";
@@ -61,37 +56,8 @@ node('master'){
                     } else {
                         error "*** File: ${artifactPath}, could not be found";
                     }
-                // }
             }
     }
-    
-    // stage('Publish to nexus repository manager'){
-    //     script{
-    //         // pom=readMavenPom file:"pom.xml";
-    //         def warFile = "**/*.war"
-    //         nexusArtifactUploader(
-    //             nexusVersion:'nexus3',
-    //             protocol:'http',
-    //             nexusUrl:'http://localhost:8081',
-    //             groupId:'pom.com.mycompany.app',
-    //             version:'1.0-SNAPSHOT',
-    //             repository:'maven-central',
-    //             credentialsId:'nexus',
-    //             artifacts:[
-    //                 [artifactId:'pom.my-app',
-    //                  classifier:'',
-    //                  file:warFile,
-    //                  type:pom.packaging],
-    //                 [
-    //                     artifactId:'pom.my-app',
-    //                     classifier:'',
-    //                     file:'pom.xml',
-    //                     // type:'pom'
-    //                 ]
-    //             ]
-    //         )
-    //     }
-    // }
     stage('Deployment') {
         def warFile = "**/*.war"
         deploy(adapters: [tomcat9(credentialsId: 'TomcatCreds', path: '', url: "http://localhost:8090/")],
