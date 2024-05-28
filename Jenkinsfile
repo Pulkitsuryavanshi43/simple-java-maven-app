@@ -19,7 +19,7 @@ node('master'){
     // }
     stage('Publish to nexus repository manager'){
         script{
-            pom=readMavenPom file:"pom.xml";
+            // pom=readMavenPom file:"pom.xml";
             def warFile = "**/*.war"
             nexusArtifactUploader(
                 nexusVersion:'nexus3',
